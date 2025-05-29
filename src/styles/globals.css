@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+    --breakpoint-xxs: 20rem;
+    --breakpoint-xs: 22.5rem;
+    --breakpoint-s: 24.375rem;
+    --breakpoint-s-plus: 26.875rem;
+    --font-poppins: "Poppins";
+    --font-stalinist-one: "Stalinist One";
+    --color-white-show: #f7f6ff;
+}

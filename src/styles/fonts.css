@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Stalinist One";
+    src: url("../assets/fonts/StalinistOne.ttf") format("truetype");
+}
