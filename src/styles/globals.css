@@ -1,3 +1,4 @@
+@import url("./fonts.css");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -127,4 +128,38 @@
   body {
     @apply bg-background text-foreground;
     }
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    background: hsla(0, 0%, 100%, 1);
+    background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 0%, hsla(231, 26%, 95%, 1) 100%);
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 0%, hsla(231, 26%, 95%, 1) 100%);
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 0%, hsla(231, 26%, 95%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FFFFFF", endColorstr="#EEEFF5", GradientType=1 );
+}
+
+@utility flex-row-between {
+    @apply flex flex-row items-center justify-between;
+}
+
+@utility flex-row-center {
+    @apply flex flex-row items-center justify-center;
+}
+
+@utility flex-row-start {
+    @apply flex flex-row items-start justify-start;
+}
+
+@utility flex-col-center {
+    @apply flex flex-col items-center justify-center;
+}
+
+@utility flex-col-between {
+    @apply flex flex-col items-center justify-between;
+}
+
+@utility flex-col-start {
+    @apply flex flex-col items-start justify-start;
 }
