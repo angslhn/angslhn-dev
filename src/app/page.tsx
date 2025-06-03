@@ -1,8 +1,8 @@
 import { JSX } from "react"
 
-import Header from "@/components/header"
-import Main from "@/components/main"
-import Footer from "@/components/footer"
+import Header from "@/page/header"
+import Main from "@/page/main"
+import Footer from "@/page/footer"
 import Animation from "@/fragments/animation"
 
 export default function Root(): JSX.Element {

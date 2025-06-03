@@ -9,11 +9,10 @@
     --breakpoint-xs: 22.5rem;
     --breakpoint-s: 24.375rem;
     --breakpoint-s-plus: 26.875rem;
-    --font-poppins: "Poppins";
-    --font-montserrat: "Montserrat";
+    --font-jetbrains-mono: "JetBrains Mono";
     --font-stalinist-one: "Stalinist One";
-    --color-white-show: #f5f5f9;
-    --color-black-custom: #021526;
+    --color-silver-haze: #f5f5f9;
+    --color-black-sapphire: #021526;
 }
 
 @theme inline {

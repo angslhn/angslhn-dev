@@ -3,7 +3,8 @@
 import gsap from "gsap"
 import Lenis from "lenis"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { JSX, useEffect } from "react"
+import { useGSAP } from "@gsap/react"
+import { JSX } from "react"
 
 import Home from "@/layouts/home"
 import About from "@/layouts/about"
@@ -13,7 +14,7 @@ import Contact from "@/layouts/contact"
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Main(): JSX.Element {
-    useEffect(() => {
+    useGSAP(() => {
         const lenis = new Lenis()
 
         function raf(time: number) {
@@ -32,7 +33,7 @@ export default function Main(): JSX.Element {
             gsap.ticker.remove(scroll)
             lenis.destroy()
         }
-    }, [])
+    }, { dependencies: [] })
 
     return (
         <main>
