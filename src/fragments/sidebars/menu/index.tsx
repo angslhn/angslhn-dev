@@ -1,34 +1,35 @@
-import { JSX } from "react";
+import { JSX } from "react"
+import Navigate from "@/utils/navigate"
 
-type MenuProps = { show: boolean };
+type MenuProps = { show: boolean }
 
 export default function Menu({ show }: MenuProps): JSX.Element {
     return (
-        <nav className={`absolute w-[13rem] h-[12rem] top-[5rem] ${ show ? "-translate-x-[9.65rem]" : "translate-x-[7rem]" } ease-in duration-300 border rounded-2xl backdrop-blur-sm shadow[0.1rem_0.1rem_0.5rem] shadow-gray-600/15`}>
-            <ul className="flex-col-between text-gray-950">
+        <nav className={`absolute w-[13rem] h-[12rem] top-[5rem] ${ show ? "-translate-x-[9.65rem]" : "translate-x-[7rem]" } ease-in duration-300 border rounded-2xl border border-gray-950/10 backdrop-blur-sm bg-white-show/25 shadow[0.1rem_0.1rem_0.5rem] shadow-gray-600/15`}>
+            <ul className="flex-col-between text-black-custom">
                 <li className="flex relative items-center h-[3rem] w-full">
                     <svg className="ml-4 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                         <path className="fill-current" d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
                     </svg>
-                    <span className="absolute w-full text-center text-sm font-poppins font-semibold cursor-pointer select-none hover:opacity-70">HOME</span>
+                    <span onClick={() => Navigate("home")} className="absolute w-full text-center text-sm font-montserrat font-semibold cursor-pointer select-none hover:opacity-70">HOME</span>
                 </li>
                 <li className="flex relative items-center h-[3rem] w-full">
                     <svg className="ml-4 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                         <path className="fill-current" d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm80 256l64 0c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16L80 384c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm256-32l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
                     </svg>
-                    <span className="absolute w-full text-center text-sm font-poppins font-semibold cursor-pointer select-none hover:opacity-70">ABOUT</span>
+                    <span onClick={() => Navigate("about")} className="absolute w-full text-center text-sm font-montserrat font-semibold cursor-pointer select-none hover:opacity-70">ABOUT</span>
                 </li>
                 <li className="flex relative items-center h-[3rem] w-full">
                     <svg className="ml-4 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path className="fill-current" d="M184 48l144 0c4.4 0 8 3.6 8 8l0 40L176 96l0-40c0-4.4 3.6-8 8-8zm-56 8l0 40L64 96C28.7 96 0 124.7 0 160l0 96 192 0 128 0 192 0 0-96c0-35.3-28.7-64-64-64l-64 0 0-40c0-30.9-25.1-56-56-56L184 0c-30.9 0-56 25.1-56 56zM512 288l-192 0 0 32c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-32L0 288 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-128z"/>
                     </svg>
-                    <span className="absolute w-full text-center text-sm font-poppins font-semibold cursor-pointer select-none hover:opacity-70">PROJECT</span>
+                    <span onClick={() => Navigate("project")} className="absolute w-full text-center text-sm font-montserrat font-semibold cursor-pointer select-none hover:opacity-70">PROJECT</span>
                 </li>
                 <li className="flex relative items-center h-[3rem] w-full">
                     <svg className="ml-4 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path d="M96 0C60.7 0 32 28.7 32 64l0 384c0 35.3 28.7 64 64 64l288 0c35.3 0 64-28.7 64-64l0-384c0-35.3-28.7-64-64-64L96 0zM208 288l64 0c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16l-192 0c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 64c0 8.8 7.2 16 16 16s16-7.2 16-16l0-64zM496 192c-8.8 0-16 7.2-16 16l0 64c0 8.8 7.2 16 16 16s16-7.2 16-16l0-64c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 64c0 8.8 7.2 16 16 16s16-7.2 16-16l0-64z"/>
                     </svg>
-                    <span className="absolute w-full text-center text-sm font-poppins font-semibold cursor-pointer select-none hover:opacity-70">CONTACT</span>
+                    <span onClick={() => Navigate("contact")} className="absolute w-full text-center text-sm font-montserrat font-semibold cursor-pointer select-none hover:opacity-70">CONTACT</span>
                 </li>
             </ul>
         </nav>

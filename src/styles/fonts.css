@@ -7,3 +7,8 @@
     font-family: "Stalinist One";
     src: url("../assets/fonts/StalinistOne.ttf") format("truetype");
 }
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat.ttf") format("truetype");
+}

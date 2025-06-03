@@ -1,6 +1,6 @@
 "use client"
 
-import { JSX, useState } from "react"
+import { JSX, useEffect, useState } from "react"
 import Link from "next/link"
 import Menu from "@/fragments/sidebars/menu"
 
@@ -11,8 +11,16 @@ export default function Header(): JSX.Element {
         setShowMenu(!showMenu)
     }
 
+    useEffect(() => {
+        const triggerScroll = () => setShowMenu(false)
+
+        window.addEventListener("scroll", triggerScroll)
+
+        return () => window.removeEventListener("scroll", triggerScroll)
+    }, [])
+
     return (
-        <header className="flex-row-between items-center w-full h-16 px-4 lg:px-8 backdrop-blur-sm border-b border-gray-200 shadow-[0.1rem_0.1rem_0.5rem] shadow-gray-400/15 fixed top-0 left-0 z-50">
+        <header className="flex-row-between items-center w-full h-16 px-4 lg:px-8 backdrop-blur-sm bg-white-show/25 border-b border-gray-950/10 shadow-[0.1rem_0.1rem_0.5rem] shadow-gray-400/15 fixed top-0 left-0 z-50">
             <div className="flex-row-center gap-2 lg:gap-3">
                 <Link href="/" className="flex-row-center xxs:gap-0 lg:gap-0.5 hover:opacity-80 transition-opacity ease-in-out duration-200" draggable="false">
                     <svg className="xxs:w-12 lg:w-14 text-gray-950/80" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
