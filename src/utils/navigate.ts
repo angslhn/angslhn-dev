@@ -9,7 +9,7 @@ export default function Navigate(section: string) {
     if (!target) return
 
     gsap.to(window, { 
-        duration: 1, 
+        duration: 1.5, 
         scrollTo: {
             y: target
         }, 

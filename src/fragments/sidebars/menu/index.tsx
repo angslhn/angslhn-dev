@@ -14,12 +14,12 @@ export default function Menu({ show }: MenuProps): JSX.Element {
         gsap.to(menu.current, {
             duration: 1,
             ease: "power3.out",
-            x: show ? -155 : 100,
+            x: show ? -83 : 176,
         })
     }, { dependencies: [show] })
 
     return (
-        <nav ref={ menu } className="absolute w-[13rem] h-[12rem] top-[5rem] rounded-2xl border border-neutral-950/10 backdrop-blur-sm bg-silver-haze/25 shadow[0.1rem_0.1rem_0.5rem] shadow-gray-600/15">
+        <nav ref={ menu } className="absolute w-[13rem] h-[12rem] top-[5rem] translate-x-44 rounded-2xl border border-gray-950/15 backdrop-blur-sm bg-silver-haze/25 shadow[0.1rem_0.1rem_0.5rem] shadow-gray-600/15">
             <ul className="flex-col-between text-black-sapphire">
                 <li className="flex relative items-center h-[3rem] w-full">
                     <svg className="ml-4 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">

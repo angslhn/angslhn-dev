@@ -1,14 +1,14 @@
 "use client"
 
-import React, { useEffect, useState, JSX } from "react"
+import { useEffect, useState, ReactNode, JSX } from "react"
 
 type SectionProps = {
-    children: React.ReactNode
+    children: ReactNode
     name: string
 }
 
 export default function Section({ children, name }: SectionProps): JSX.Element {
-    const [height, setHeight] = useState<number>(0);
+    const [height, setHeight] = useState<number>(0)
     
     useEffect(() => {
         const updateHeight = () => setHeight(window.innerHeight)
@@ -17,14 +17,12 @@ export default function Section({ children, name }: SectionProps): JSX.Element {
 
         updateHeight()
 
-        return () => {
-            window.removeEventListener('resize', updateHeight)
-        }
+        return () => window.removeEventListener('resize', updateHeight)
     }, [])
 
     return (
         <section className={`${name} ${height < 550 ? "h-[37.5rem]" : "h-screen"} w-full flex-row-center`}>
-            { children}
+            { children }
         </section>
     )
 }

@@ -17,7 +17,7 @@ export default function Main(): JSX.Element {
     useGSAP(() => {
         const lenis = new Lenis()
 
-        function raf(time: number) {
+        function raf(time: number): void {
             lenis.raf(time)
 
             requestAnimationFrame(raf)
