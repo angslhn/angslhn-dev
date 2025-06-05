@@ -12,7 +12,7 @@
     --font-jetbrains-mono: "JetBrains Mono";
     --font-stalinist-one: "Stalinist One";
     --color-silver-haze: #f5f5f9;
-    --color-black-sapphire: #021526;
+    --color-charcoal-blue: #222831;
 }
 
 @theme inline {
@@ -134,6 +134,31 @@
 body, html {
     height: 100%;
     width: 100%;
+    cursor: none !important;
+}
+
+button {
+    cursor: none !important;
+}
+
+a {
+    cursor: none !important;
+}
+
+.cursor {
+  pointer-events: none;
+}
+
+.cursor__ball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  mix-blend-mode: difference;
+  z-index: 1000;
+}
+
+.cursor__ball circle {
+  fill: #f7f8fa;
 }
 
 @utility flex-row-between {
@@ -194,7 +219,7 @@ body, html {
 }
 
 .animation span:nth-child(0) {
-    color: #00000093;
+    color: #000000c0;
     top: 86%;
     left: 75%;
     animation-duration: 33s;
@@ -204,7 +229,7 @@ body, html {
 }
 
 .animation span:nth-child(1) {
-    color: #00000093;
+    color: #000000c0;
     top: 40%;
     left: 83%;
     animation-duration: 28s;
@@ -214,7 +239,7 @@ body, html {
 }
 
 .animation span:nth-child(2) {
-    color: #00000093;
+    color: #000000c0;
     top: 20%;
     left: 71%;
     animation-duration: 28s;
@@ -224,7 +249,7 @@ body, html {
 }
 
 .animation span:nth-child(3) {
-    color: #00000093;
+    color: #000000c0;
     top: 55%;
     left: 61%;
     animation-duration: 8s;
@@ -234,7 +259,7 @@ body, html {
 }
 
 .animation span:nth-child(4) {
-    color: #00000093;
+    color: #000000c0;
     top: 3%;
     left: 73%;
     animation-duration: 6s;
@@ -244,7 +269,7 @@ body, html {
 }
 
 .animation span:nth-child(5) {
-    color: #00000093;
+    color: #000000c0;
     top: 50%;
     left: 79%;
     animation-duration: 53s;
@@ -254,7 +279,7 @@ body, html {
 }
 
 .animation span:nth-child(6) {
-    color: #00000093;
+    color: #000000c0;
     top: 8%;
     left: 55%;
     animation-duration: 50s;
@@ -264,7 +289,7 @@ body, html {
 }
 
 .animation span:nth-child(7) {
-    color: #00000093;
+    color: #000000c0;
     top: 100%;
     left: 73%;
     animation-duration: 9s;
@@ -274,7 +299,7 @@ body, html {
 }
 
 .animation span:nth-child(8) {
-    color: #00000093;
+    color: #000000c0;
     top: 66%;
     left: 8%;
     animation-duration: 31s;
@@ -284,7 +309,7 @@ body, html {
 }
 
 .animation span:nth-child(9) {
-    color: #00000093;
+    color: #000000c0;
     top: 43%;
     left: 6%;
     animation-duration: 54s;

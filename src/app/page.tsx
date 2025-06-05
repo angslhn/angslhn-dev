@@ -4,11 +4,13 @@ import Header from "@/page/header"
 import SocialMedia from "@/fragments/sidebars/socialmedia"
 import Main from "@/page/main"
 import Footer from "@/page/footer"
+import Cursor from "@/elements/cursor"
 import Animation from "@/fragments/animation"
 
 export default function Root(): JSX.Element {
   return (
     <>
+      <Cursor/>
       <Header/>
       <SocialMedia/>
       <Main/>

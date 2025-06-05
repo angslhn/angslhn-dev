@@ -1,5 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next"
+import type { Viewport } from "next"
+
 import "@/styles/globals.css"
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  minimumScale: 1,
+  userScalable: false,
+  themeColor: "#222831"
+}
 
 export const metadata: Metadata = {
     title: 'Aang Solihin | Dev Profile',

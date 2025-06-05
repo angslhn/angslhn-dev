@@ -7,7 +7,7 @@ type ButtonProps = {
 
 export default function Button({ children }: ButtonProps): JSX.Element {
     return (
-        <button onClick={ () => Navigate("about") } className="px-6 py-2.5 bg-gray-900 font-jetbrains-mono font-extrabold text-[1.05rem] text-gray-200 rounded-md">
+        <button onClick={ () => Navigate("about") } className="hoverable px-6 py-2.5 bg-charcoal-blue font-jetbrains-mono font-extrabold text-[1.05rem] text-gray-200 rounded-md">
             { children }
         </button>
     )
