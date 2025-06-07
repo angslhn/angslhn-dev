@@ -173,6 +173,10 @@ a {
     @apply flex flex-row items-start justify-start;
 }
 
+@utility flex-row-start-center {
+    @apply flex flex-row items-center justify-start;
+}
+
 @utility flex-col-center {
     @apply flex flex-col items-center justify-center;
 }
@@ -183,6 +187,10 @@ a {
 
 @utility flex-col-start {
     @apply flex flex-col items-start justify-center;
+}
+
+@utility flex-col-start-top {
+    @apply flex flex-col items-center justify-start;
 }
 
 @keyframes move {

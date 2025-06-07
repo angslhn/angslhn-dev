@@ -8,6 +8,7 @@ import { JSX } from "react"
 
 import Home from "@/layouts/home"
 import About from "@/layouts/about"
+import Experience from "@/layouts/experience"
 import Project from "@/layouts/project"
 import Contact from "@/layouts/contact"
 
@@ -39,6 +40,7 @@ export default function Main(): JSX.Element {
         <main>
             <Home/>
             <About/>
+            <Experience/>
             <Project/>
             <Contact/>
         </main>
