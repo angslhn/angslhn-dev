@@ -21,7 +21,7 @@ export default function Section({ children, name }: SectionProps): JSX.Element {
     }, [])
 
     return (
-        <section className={`${name} ${height < 550 ? "h-[37.5rem]" : "h-screen"} w-full flex-row-center`}>
+        <section className={`${name} ${height < 550 ? "h-[37.5625rem]" : "h-screen"} w-full flex-row-center`}>
             { children }
         </section>
     )

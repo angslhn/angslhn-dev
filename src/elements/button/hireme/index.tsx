@@ -1,0 +1,15 @@
+import { JSX } from "react"
+import Link from "next/link"
+import React from "react"
+
+type ButtonProps = {
+    children: React.ReactNode
+}
+
+export default function HireMe({ children }: ButtonProps): JSX.Element {
+    return (
+        <Link href="mailto:angslhn@gmail.com" className="hoverable flex-row-center gap-2.5 px-6 py-2.5 bg-charcoal-blue hover:bg-charcoal-blue/85 transition-colors duration-300 rounded-sm">
+            { children }
+        </Link>
+    )
+}

@@ -5,32 +5,32 @@ export default function Experience(): JSX.Element {
     return (
         <Section name="experience">
             <div className="h-[30rem] w-[57rem] flex-row-center gap-3">
-                <div className="h-full w-[22rem] flex-col-between border border-charcoal-blue/15 rounded-xl shadow-[0.1rem_0.1rem_0.4rem] shadow-charcoal-blue/15 backdrop-blur-sm bg-silver-haze/25">
+                <div className="h-full w-[22rem] flex-col-between border border-charcoal-blue/15 rounded-xl bg-silver-haze/15 backdrop-blur-sm">
                     <div className="h-[15%] w-full flex-row-center">
-                        <h3 className="font-jetbrains-mono text-2xl font-extrabold text-center text-charcoal-blue">
+                        <h3 className="hoverable font-jetbrains-mono text-2xl underline underline-offset-8 font-extrabold text-center text-charcoal-blue">
                             My Experience    
                         </h3>
                     </div>
                     <div className="h-[85%] w-full flex-col-start-top">
-                        <div className="flex-row-start-center gap-2">
+                        <div className="flex-row-start-center gap-2 mt-2.5">
                             <span className="px-[0.2rem] py-[0.2rem] bg-charcoal-blue rounded-full"></span>
-                            <span className="text-[0.60rem] font-jetbrains-mono font-extrabold p-2 border border-charcoal-blue/15 rounded-sm shadow-[0.1rem_0.1rem_0.4rem] shadow-charcoal-blue/15">Studying at Informatics Engineering</span>
+                            <span className="text-[0.60rem] font-jetbrains-mono font-extrabold text-silver-haze p-2 bg-charcoal-blue border border-charcoal-blue/15 rounded-sm">Studying at Informatics Engineering</span>
                             <span className="text-[0.65rem] font-jetbrains-mono font-bold underline underline-offset-4">2024 - Present</span>
                         </div>
                     </div>
                 </div>
                 <div className="h-full w-[35rem] flex-col-center gap-3">
                     <div className="flex-row-center">
-                        <h3 className="w-44 py-1.5 text-center text-2xl font-jetbrains-mono font-extrabold border border-charcoal-blue/15 rounded-sm shadow-[0.1rem_0.1rem_0.4rem] shadow-charcoal-blue/15 backdrop-blur-sm bg-silver-haze/25">
+                        <h3 className="hoverable w-44 py-1.5 text-center text-2xl font-jetbrains-mono font-extrabold text-silver-haze border border-charcoal-blue/15 rounded-sm bg-charcoal-blue backdrop-blur-sm">
                             Tech Stack
                         </h3>
                     </div>
-                    <div className="px-3 py-1.5 mb-2 border-charcoal-blue/15 rounded-sm shadow-[0.1rem_0.1rem_0.4rem] shadow-charcoal-blue/15 backdrop-blur-sm bg-silver-haze/25">
+                    <div className="px-3 py-1.5 mb-2 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
                         <p className="text-justify text-sm font-semibold">
                             Currently, I am focusing on deepening my knowledge of programming languages, frameworks, and various tools that support me in becoming a fullstack developer.
                         </p>
                     </div>
-                    <div className="px-3 py-1.5 mb-2 border-charcoal-blue/15 rounded-sm shadow-[0.1rem_0.1rem_0.4rem] shadow-charcoal-blue/15 backdrop-blur-sm bg-silver-haze/25">
+                    <div className="px-3 py-1.5 mb-2 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
                         <p className="text-justify text-sm font-semibold">
                             The languages ​​and frameworks that I currently master and understand for development.
                         </p>
@@ -110,7 +110,7 @@ export default function Experience(): JSX.Element {
                             </svg>
                         </div>
                     </div>
-                    <div className="px-3 py-1.5 mb-2 border-charcoal-blue/15 rounded-sm shadow-[0.1rem_0.1rem_0.4rem] shadow-charcoal-blue/15 backdrop-blur-sm bg-silver-haze/25">
+                    <div className="px-3 py-1.5 mb-2 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
                         <p className="text-justify text-sm font-semibold">
                             Some tools that I often use in development.
                         </p>

@@ -169,6 +169,10 @@ a {
     @apply flex flex-row items-center justify-center;
 }
 
+@utility flex-row-center-start {
+    @apply flex flex-row items-center justify-start;
+}
+
 @utility flex-row-start {
     @apply flex flex-row items-start justify-start;
 }
@@ -179,6 +183,10 @@ a {
 
 @utility flex-col-center {
     @apply flex flex-col items-center justify-center;
+}
+
+@utility flex-col-center-start {
+    @apply flex flex-col items-start justify-center;
 }
 
 @utility flex-col-between {
