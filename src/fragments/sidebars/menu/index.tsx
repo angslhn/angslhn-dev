@@ -23,7 +23,7 @@ export default function Menu({ show }: MenuProps): JSX.Element {
     }, { dependencies: [show] })
 
     return (
-        <nav ref={ menu } className="absolute w-[13rem] h-[15rem] top-[5rem] translate-x-48 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
+        <nav ref={ menu } className="absolute w-[13rem] h-[15rem] top-[5rem] translate-x-48 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm z-20">
             <ul className="flex-col-between text-charcoal-blue">
                 <li className="flex relative items-center h-[3rem] w-full">
                     <svg className="ml-4 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">

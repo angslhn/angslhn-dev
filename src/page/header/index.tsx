@@ -20,7 +20,7 @@ export default function Header(): JSX.Element {
     }, [])
 
     return (
-        <header className="fixed top-0 left-0 z-50 flex-row-between items-center w-full h-16">
+        <header className="fixed top-0 left-0 z-30 xxs:border-b xxs:border-charcoal-blue/15 xxs:bg-silver-haze/10 xxs:backdrop-blur-[0.3rem] s-large:bg-transparent s-large:border-none s-large:backdrop-blur-none flex-row-between items-center w-full h-16">
             <div className="h-full xxs:w-[6rem] lg:w-[8rem] flex-row-center">
                 <Link href="/" className="hoverable flex-row-center xxs:gap-0 lg:gap-0.5 hover:opacity-80 transition-opacity ease-in-out duration-200" draggable="false">
                     <svg className="xxs:w-12 lg:w-14 text-gray-950/80" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">

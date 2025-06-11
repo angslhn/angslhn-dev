@@ -42,18 +42,18 @@ export default function Home(): JSX.Element {
 
     return (
         <Section name="home">
-            <div className="xxs:h-[17.5rem] sm:h-[18rem] xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] lg:w-[40rem] flex-col-center border border-charcoal-blue/15 rounded-xl bg-silver-haze/15 backdrop-blur-sm">
+            <div className="xxs:h-[17.5rem] sm:h-[18rem] lg:h-[21rem] xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] md:w-[33rem] lg:w-[40rem] flex-col-center border border-charcoal-blue/15 rounded-xl bg-silver-haze/15 backdrop-blur-sm">
                 <div className="flex-col-start xxs:h-[13.5rem] sm:h-[15.5rem] w-11/12 xxs:gap-1.5 sm:gap-3">
-                    <h1 className="order-2 font-stalinist-one text-charcoal-blue xxs:leading-6 lg:leading-9 tracking-wide xxs:text-[1.4rem] lg:text-[2.8rem] font-semibold xxs:text-shadow-[0.1rem_0.1rem_0.05rem] sm:text-shadow-[0.2rem_0.2rem_0.05rem] text-shadow-charcoal-blue/80">
+                    <h1 className="order-2 font-stalinist-one text-charcoal-blue xxs:leading-6 lg:leading-9 tracking-wide select-none xxs:text-[1.4rem] xs:text-[1.5rem] s:text-[1.51rem] s-plus:text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] lg:text-[2.8rem] font-semibold select-none xxs:text-shadow-[0.1rem_0.1rem_0.05rem] sm:text-shadow-[0.2rem_0.2rem_0.05rem] text-shadow-charcoal-blue/80">
                         AANG SOLIHIN
                     </h1>
-                    <h2 className="order-1 mb-1 font-jetbrains-mono text-charcoal-blue tracking-wider font-extrabold xxs:text-xl lg:text-3xl">
+                    <h2 className="order-1 mb-1 font-jetbrains-mono text-charcoal-blue tracking-wider font-extrabold select-none xxs:text-[1.25rem] xs:text-[1.30rem] sm:text-[1.4rem] md:text-[1.5rem] lg:text-[1.875rem]">
                         Heyyy, I'am...
                     </h2>
-                    <h2 className="order-3 font-jetbrains-mono text-charcoal-blue tracking-wider font-extrabold xxs:text-[1.18rem] lg:text-2xl">
+                    <h2 className="order-3 font-jetbrains-mono text-charcoal-blue tracking-wider font-extrabold select-none xxs:text-[1.18rem] xs:text-[1.32rem] sm:text-[1.43rem] md:text-[1.52rem] lg:text-[1.9rem]">
                         Fullstack Developer.
                     </h2>
-                    <p className="order-4 font-jetbrains-mono text-charcoal-blue font-semibold text-justify xxs:leading-4 sm:leading-5 xxs:text-[0.75rem] sm:text-sm">
+                    <p className="order-4 font-jetbrains-mono text-charcoal-blue font-semibold text-justify xxs:leading-4 sm:leading-5 select-none xxs:text-[0.75rem] sm:text-sm">
                         On this portfolio page, you can find some of my information and matters relating to my skills and development in the world of technology.
                     </p>
                 </div>

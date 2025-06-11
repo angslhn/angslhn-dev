@@ -59,7 +59,7 @@ export default function SocialMedia() {
     }, { dependencies: [hide] })
 
     return (
-        <aside className="fixed flex-row-center top-0 left-0 h-screen w-16">
+        <aside className="fixed flex-row-center top-0 left-0 h-screen w-16 z-20">
             <div ref={ socialMedia } className={`social-media absolute opacity-0 left-0 py-1.5 w-14 flex-col-center gap-1.5 border border-charcoal-blue/15 bg-silver-haze/15 backdrop-blur-sm rounded-tr-sm rounded-br-sm ${ hide ? "-translate-x-16" : "translate-x-0" }`}>
                 <div className="h-12 w-full flex justify-center items-center">
                     <Link href="https://github.com/angslhn" target="_blank" className="hoverable">
