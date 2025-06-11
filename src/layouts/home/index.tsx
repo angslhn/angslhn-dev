@@ -1,25 +1,63 @@
-import { JSX } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import Section from '@/wrappers/section'
 import AboutMe from '@/elements/button/aboutme'
 import HireMe from '@/elements/button/hireme'
 
+type Resolution = {
+    height: number,
+    width: number
+}
+
 export default function Home(): JSX.Element {
+    const [resolution, setResolution] = useState<Resolution>({ height: 0, width: 0 })
+
+    useEffect(() => {
+        const handleResize = () => {
+            setResolution({ height: window.innerHeight, width: window.innerWidth })
+        }
+
+        handleResize()
+
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    }, [])
+
+    useEffect(() => {
+        const $target = document.querySelector(".home") as HTMLElement
+        
+        const { height } = resolution
+
+        if (height < 600) {
+            $target.classList.add("h-[37.5625rem]")
+            $target.classList.remove("h-screen")
+        } else {
+            $target.classList.remove("h-[37.5625rem]")
+            $target.classList.add("h-screen")
+        }
+
+    }, [resolution])
+
     return (
         <Section name="home">
-            <div className="h-[20rem] w-[40rem] flex-col-center border border-charcoal-blue/15 rounded-xl bg-silver-haze/15 backdrop-blur-sm">
-                <div className="flex-col-start h-[15.5rem] w-11/12 gap-3">
-                    <h1 className="order-2 font-stalinist-one text-charcoal-blue leading-9 tracking-wide text-[2.8rem] font-semibold text-shadow-[0.2rem_0.2rem_0.05rem] text-shadow-charcoal-blue/80">AANG SOLIHIN</h1>
-                    <h2 className="order-1 mb-1 font-jetbrains-mono text-charcoal-blue tracking-wider font-extrabold text-3xl">
+            <div className="xxs:h-[17.5rem] sm:h-[18rem] xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] lg:w-[40rem] flex-col-center border border-charcoal-blue/15 rounded-xl bg-silver-haze/15 backdrop-blur-sm">
+                <div className="flex-col-start xxs:h-[13.5rem] sm:h-[15.5rem] w-11/12 xxs:gap-1.5 sm:gap-3">
+                    <h1 className="order-2 font-stalinist-one text-charcoal-blue xxs:leading-6 lg:leading-9 tracking-wide xxs:text-[1.4rem] lg:text-[2.8rem] font-semibold xxs:text-shadow-[0.1rem_0.1rem_0.05rem] sm:text-shadow-[0.2rem_0.2rem_0.05rem] text-shadow-charcoal-blue/80">
+                        AANG SOLIHIN
+                    </h1>
+                    <h2 className="order-1 mb-1 font-jetbrains-mono text-charcoal-blue tracking-wider font-extrabold xxs:text-xl lg:text-3xl">
                         Heyyy, I'am...
                     </h2>
-                    <h2 className="order-3 font-jetbrains-mono text-charcoal-blue tracking-wider font-extrabold text-2xl">
+                    <h2 className="order-3 font-jetbrains-mono text-charcoal-blue tracking-wider font-extrabold xxs:text-[1.18rem] lg:text-2xl">
                         Fullstack Developer.
                     </h2>
-                    <p className="order-4 font-jetbrains-mono text-charcoal-blue font-semibold text-justify leading-5 text-sm">
+                    <p className="order-4 font-jetbrains-mono text-charcoal-blue font-semibold text-justify xxs:leading-4 sm:leading-5 xxs:text-[0.75rem] sm:text-sm">
                         On this portfolio page, you can find some of my information and matters relating to my skills and development in the world of technology.
                     </p>
                 </div>
-                <div className="h-[4.5rem] flex items-start justify-center gap-3">
+                <div className="h-[4rem] flex items-start justify-center gap-3">
                     <AboutMe>
                         <span className="text-silver-haze font-jetbrains-mono font-extrabold">
                             About Me

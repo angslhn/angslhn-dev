@@ -1,20 +1,58 @@
-import { JSX } from "react"
+"use client"
+
+import { JSX, useEffect, useState } from "react"
 import Link from "next/link"
 import Section from "@/wrappers/section"
 
+type Resolution = {
+    height: number,
+    width: number
+}
+
 export default function Contact(): JSX.Element {
+    const [resolution, setResolution] = useState<Resolution>({ height: 0, width: 0 })
+
+    useEffect(() => {
+        const handleResize = () => {
+            setResolution({ height: window.innerHeight, width: window.innerWidth })
+        }
+
+        handleResize()
+
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    }, [])
+
+    useEffect(() => {
+        const $target = document.querySelector(".contact") as HTMLElement
+        
+        const { width, height } = resolution
+
+        if (width < 950 || height < 601) {
+            $target.classList.add("h-[41rem]")
+            $target.classList.remove("h-screen")
+        } else {
+            $target.classList.remove("h-[41rem]")
+            $target.classList.add("h-screen")
+        }
+
+    }, [resolution])
+
     return (
         <Section name="contact">
-            <div className="h-[25rem] w-[40rem] flex-col-center border border-charcoal-blue/15 rounded-xl bg-silver-haze/15 backdrop-blur-sm">
-                <div className="h-[6.5rem] w-full flex-col-center-start gap-2.5 px-4 border-b border-charcoal-blue/15">
-                    <h3 className="ml-1.5 font-jetbrains-mono font-extrabold text-3xl">
+            <div className="xxs:h-[36rem] sm:h-[26rem] lg:h-[25rem] xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[28.5rem] lg:w-[40rem] flex-col-center xxs:gap-3 sm:gap-1.5 lg:gap-0 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
+                <div className="xxs:h-[10rem] sm:h-[8rem] lg:h-[6.5rem] w-full flex-col-center-start gap-2.5 px-4 border-b border-charcoal-blue/15">
+                    <h3 className="font-jetbrains-mono font-extrabold text-3xl">
                         Let's Connect!
                     </h3>
                     <p className="font-jetbrains-mono font-semibold text-sm text-justify">
                         I"m always open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out—I’d love to hear from you!
                     </p>
                 </div>
-                <div className="h-[13rem] w-full flex-col-center-start px-6 gap-4">
+                <div className="xxs:h-[16rem] sm:h-[13rem] lg:h-[13rem] w-full flex-col-center-start px-6 gap-4">
                     <p className="font-jetbrains-mono font-semibold text-sm">
                         If you have questions about anything, please contact me via email.
                     </p>
@@ -32,7 +70,7 @@ export default function Contact(): JSX.Element {
                         For now, i am open to job opportunities or long distance collaboration with the skills I have.
                     </p>
                 </div>
-                <div className="h-[5.5rem] w-full border-t border-charcoal-blue/15 flex-row-center flex-wrap gap-5">
+                <div className="py-2 w-full border-t border-charcoal-blue/15 flex-row-center flex-wrap xxs:gap-3 sm:gap-2">
                     <div className="h-14 w-14 flex-row-center rounded-sm border border-charcoal-blue/15">
                         <Link href="https://github.com/angslhn" target="_blank">
                             <svg className="hoverable text-charcoal-blue w-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

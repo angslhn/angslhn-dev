@@ -1,47 +1,66 @@
 "use client"
 
 import gsap from "gsap"
-import { useEffect, useState, useRef } from "react"
-import { useGSAP } from "@gsap/react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import { useGSAP } from "@gsap/react"
+
+type Resolution = {
+    height: number
+    width: number
+}
 
 export default function SocialMedia() {
-    const [show, setShow] = useState<boolean>(true)
-    const socialmedia = useRef<HTMLDivElement | null>(null)
+    const [hide, setHide] = useState<boolean>(true)
+    const [resolution, setResolution] = useState<Resolution>({ height: 0, width: 0 })
+    const socialMedia = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
+        const handleResize = () => setResolution({ height: window.innerHeight, width: window.innerWidth })
+
+        handleResize()
+
+        window.addEventListener("resize", handleResize)
+
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
+
+    useEffect(() => {
+        const { height, width } = resolution
+
         const observer = new IntersectionObserver ((entries) => {
             entries.forEach((entry) => {
-                if(entry.isIntersecting) {
-                    setShow(false)
+                if(entry.isIntersecting || (height < 601 && width < 550) || height < 601 || width < 550) {
+                    setHide(true)
                 } else {
-                    setShow(true)
+                    setHide(false)
                 }
             })
-        }, { root: null, threshold: 0.1 })
+        }, { root: null, threshold: 0.01 })
         
         const target = document.querySelector(".contact")
 
         observer.observe(target as Element)
 
         return () => observer.disconnect()
-    }, [])
+    }, [resolution])
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
-            gsap.to(socialmedia.current, {
-                duration: 0.5,
-                x: show ? 0 : -64,
+            gsap.to(socialMedia.current, {
+                duration: 0.75,
+                opacity: 1,
                 ease: "power3.out",
+                x: !hide ? 0 : -64
             })
         })
 
         return () => ctx.revert()
-    }, { dependencies: [show] })
-    
+    }, { dependencies: [hide] })
+
     return (
         <aside className="fixed flex-row-center top-0 left-0 h-screen w-16">
-            <div ref={ socialmedia } className="py-1.5 w-14 flex-col-center gap-1.5 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
+            <div ref={ socialMedia } className={`social-media absolute opacity-0 left-0 py-1.5 w-14 flex-col-center gap-1.5 border border-charcoal-blue/15 bg-silver-haze/15 backdrop-blur-sm rounded-tr-sm rounded-br-sm ${ hide ? "-translate-x-16" : "translate-x-0" }`}>
                 <div className="h-12 w-full flex justify-center items-center">
                     <Link href="https://github.com/angslhn" target="_blank" className="hoverable">
                         <svg className="w-[2.4rem] text-charcoal-blue" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

@@ -1,3 +1,5 @@
+"use client"
+
 import { JSX } from "react"
 
 import Header from "@/page/header"

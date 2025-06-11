@@ -16,13 +16,15 @@ export default function Cursor() {
     
     const onMouseMove = (e: MouseEvent) => {
       gsap.to(bigBall, {
-        duration: 0.5,
+        duration: 1,
+        ease: "power4",
         x: e.clientX - 15,
         y: e.clientY - 15
       })
 
       gsap.to(smallBall, {
-        duration: 0.2,
+        duration: 0.4,
+        ease: "power4",
         x: e.clientX - 5,
         y: e.clientY - 7
       })

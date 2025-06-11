@@ -16,22 +16,29 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Main(): JSX.Element {
     useGSAP(() => {
-        const lenis = new Lenis()
-
+        const lenis = new Lenis({
+            smoothWheel: true,
+            duration: 1.75,
+        })
+    
         function raf(time: number): void {
             lenis.raf(time)
 
             requestAnimationFrame(raf)
         }
-
+    
         requestAnimationFrame(raf)
-
-        const scroll = () => ScrollTrigger.update()
-
-        gsap.ticker.add(scroll)
-
+    
+        const updateScrollTrigger = () => ScrollTrigger.update()
+        gsap.ticker.add(updateScrollTrigger)
+    
         return () => {
-            gsap.ticker.remove(scroll)
+            gsap.ticker.remove(updateScrollTrigger)
+            
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+
+            lenis.stop()
+            lenis.raf(0)
             lenis.destroy()
         }
     }, { dependencies: [] })
