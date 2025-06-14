@@ -58,11 +58,15 @@ a {
 }
 
 @utility flex-row-start {
-    @apply flex flex-row items-start justify-start;
+    @apply flex flex-row items-center justify-start;
 }
 
 @utility flex-row-start-center {
     @apply flex flex-row items-center justify-start;
+}
+
+@utility flex-row-end {
+    @apply flex flex-row items-center justify-end;
 }
 
 @utility flex-col-center {

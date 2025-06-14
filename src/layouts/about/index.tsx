@@ -1,31 +1,44 @@
 "use client"
 
 import { JSX, useEffect, useState } from "react"
+import { useApp } from "@/hooks/useApp"
 import Image from "next/image"
 import Link from "next/link"
 import Section from "@/wrappers/section"
 import angslhn from "@/assets/images/angslhn.jpg"
 
-type Resolution = {
-    height: number,
-    width: number
+import { Resolution } from "@/libs/types"
+
+interface AboutProps {
+    localization: {
+        en: AboutLocalization
+        id: AboutLocalization
+    }
 }
 
-export default function About(): JSX.Element {
+interface AboutLocalization {
+    bio_text_1: string
+    bio_text_2: string
+    bio_text_3: string
+    text_heading_title_1: string
+    description_1: string
+    description_2: string
+    description_3: string
+}
+
+export default function About({ localization }: AboutProps): JSX.Element {
     const [resolution, setResolution] = useState<Resolution>({ height: 0, width: 0 })
 
+    const { locale } = useApp()
+
     useEffect(() => {
-        const handleResize = () => {
-            setResolution({ height: window.innerHeight, width: window.innerWidth })
-        }
+        const handleResize = () => setResolution({ height: window.innerHeight, width: window.innerWidth })
 
         handleResize()
 
         window.addEventListener("resize", handleResize)
 
-        return () => {
-            window.removeEventListener("resize", handleResize)
-        }
+        return () => window.removeEventListener("resize", handleResize)
     }, [])
 
     useEffect(() => {
@@ -33,7 +46,7 @@ export default function About(): JSX.Element {
         
         const { width, height } = resolution
 
-        if (width < 950 || height < 601) {
+        if (width < 1024 || height < 601) {
             $target.classList.add("h-[52rem]")
             $target.classList.remove("h-screen")
         } else {
@@ -52,7 +65,7 @@ export default function About(): JSX.Element {
                     </div>
                     <div className="h-[9rem] w-[90%] flex-col-center gap-2">
                         <strong className="w-full py-1.5 text-center font-jetbrains-mono select-none text-[1.05rem] font-extrabold text-silver-haze border border-charcoal-blue/15 rounded-sm bg-charcoal-blue">
-                            Aang Solihin
+                            { locale === "en" ? localization.en.bio_text_1 : localization.id.bio_text_1 }
                         </strong>
                         <div className="relative w-full flex-row-start gap-1.5 py-1.5 text-silver-haze  border border-charcoal-blue/15 rounded-sm bg-charcoal-blue">
                             <i className="h-full flex justify-end items-center w-5">
@@ -61,7 +74,7 @@ export default function About(): JSX.Element {
                                 </svg>
                             </i>
                             <span className="absolute font-jetbrains-mono w-full text-center select-none text-sm font-semibold">
-                                3 - August - 2005
+                                { locale === "en" ? localization.en.bio_text_2 : localization.id.bio_text_2 }
                             </span>
                         </div>
                         <div className="relative w-full flex-row-start gap-1.5 py-1.5 text-silver-haze  border border-charcoal-blue/15 rounded-sm bg-charcoal-blue hover:bg-charcoal-blue/85 transition-colors duration-300">
@@ -71,23 +84,23 @@ export default function About(): JSX.Element {
                                 </svg>
                             </i>
                             <Link href="https://maps.app.goo.gl/zAxCWieZuDX3oXLX6" draggable="false" className="absolute w-full font-jetbrains-mono text-center select-none text-sm font-semibold" target="_blank">
-                                Sumedang, Indonesia
+                                { locale === "en" ? localization.en.bio_text_3 : localization.id.bio_text_3 }
                             </Link>
                         </div>
                     </div>
                 </div>
                 <div className="xxs:h-[34rem] sm:h-[27rem] lg:h-full xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] md:w-[33rem] lg:w-[40rem] flex-col-center gap-2">
-                    <h2 className="hoverable py-1.5 px-3 mb-2 font-jetbrains-mono text-center select-none xxs:text-[1.5rem] sm:text-[1.6rem] font-extrabold text-silver-haze border border-charcoal-blue/15 rounded-sm bg-charcoal-blue backdrop-blur-sm">
-                        About Me
+                    <h2 className="big-hoverable py-1.5 px-2 mb-2 font-jetbrains-mono text-center select-none xxs:text-[1.3rem] sm:text-[1.4rem] font-extrabold text-silver-haze border border-charcoal-blue/15 rounded-sm bg-charcoal-blue backdrop-blur-sm">
+                        { locale === "en" ? localization.en.text_heading_title_1 : localization.id.text_heading_title_1 }
                     </h2>
                     <p className="py-1.5 px-3 text-justify font-jetbrains-mono select-none text-sm font-semibold border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
-                        Heyyy, let me introduce myself. I'm Aang Solihin, 20 years old, and currently studying Informatics Engineering. I'm on a journey to achieve my dream of becoming a fullstack developer.
+                        { locale === "en" ? localization.en.description_1 : localization.id.description_1 }
                     </p>
                     <p className="py-1.5 px-3 text-justify font-jetbrains-mono select-none text-sm font-semibold border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
-                        As part of this journey, I constantly strive to learn and explore various topics related to technology—especially in fullstack development. Recently, I've also begun studying Artificial Intelligence (AI) to stay relevant in this rapidly evolving era.
+                        { locale === "en" ? localization.en.description_2 : localization.id.description_2 }
                     </p>
                     <p className="py-1.5 px-3 text-justify font-jetbrains-mono select-none text-sm font-semibold border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
-                        Looking ahead, I hope to create technology that is not only innovative but also beneficial and sustainable for many people—technology that improves lives without causing harm to its users.
+                        { locale === "en" ? localization.en.description_3 : localization.id.description_3 }
                     </p>
                 </div>
             </div>

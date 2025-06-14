@@ -1,28 +1,39 @@
 "use client"
 
-import { JSX, useEffect, useState } from 'react'
-import Section from '@/wrappers/section'
+import { JSX, useEffect, useState } from "react"
+import { useApp } from "@/hooks/useApp"
+import Section from "@/wrappers/section"
 
-type Resolution = {
-    height: number,
-    width: number
+import { Resolution } from "@/libs/types"
+
+interface ExperienceProps {
+    localization: {
+        en: ExperienceLocalization
+        id: ExperienceLocalization
+    }
 }
 
-export default function Experience(): JSX.Element {
+interface ExperienceLocalization {
+    text_heading_title_1: string
+    text_heading_title_2: string
+    description_1: string
+    description_2: string
+    description_3: string
+}
+
+export default function Experience({ localization }: ExperienceProps): JSX.Element {
     const [resolution, setResolution] = useState<Resolution>({ height: 0, width: 0 })
 
+    const { locale } = useApp()
+
     useEffect(() => {
-        const handleResize = () => {
-            setResolution({ height: window.innerHeight, width: window.innerWidth })
-        }
+        const handleResize = () => setResolution({ height: window.innerHeight, width: window.innerWidth })
 
         handleResize()
 
         window.addEventListener("resize", handleResize)
 
-        return () => {
-            window.removeEventListener("resize", handleResize)
-        }
+        return () => window.removeEventListener("resize", handleResize)
     }, [])
 
     useEffect(() => {
@@ -30,7 +41,7 @@ export default function Experience(): JSX.Element {
         
         const { width, height } = resolution
 
-        if (width < 950 || height < 601) {
+        if (width < 1024 || height < 601) {
             $target.classList.add("h-[64rem]")
             $target.classList.remove("h-screen")
         } else {
@@ -45,31 +56,32 @@ export default function Experience(): JSX.Element {
             <div className="xxs:h-[62rem] lg:h-[30rem] xxs:w-full lg:w-[55rem] xxs:flex-col-center lg:flex-row-center xxs:gap-1.5 lg:gap-3">
                 <div className="xxs:h-[25rem] sm:h-[32rem] lg:h-full xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] md:w-[33rem] lg:w-[22rem] xxs:flex-col-center lg:flex-col-between border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
                     <div className="h-[12%] w-full flex-row-center">
-                        <h3 className="hoverable font-jetbrains-mono select-none xxs:text-[1.5rem] sm:text-[1.6rem] underline underline-offset-4 font-extrabold text-center text-charcoal-blue">
-                            My Experience    
+                        <h3 className="big-hoverable font-jetbrains-mono select-none xxs:text-[1.3rem] sm:text-[1.4rem] underline underline-offset-4 font-extrabold text-center text-charcoal-blue">
+                            { locale === "en" ? localization.en.text_heading_title_1 : localization.id.text_heading_title_1 }
                         </h3>
                     </div>
-                    <div className="h-[88%] w-full lg:flex-col-start-top">
-                        <div className="xxs:h-24 lg:h-20 w-full flex-col-center xxs:gap-2 lg:gap-2.5">
-                            <span className="select-none xxs:text-[0.60rem] sm:text-[0.9rem] lg:text-[0.8rem] font-jetbrains-mono font-extrabold text-silver-haze xxs:p-1.5 md:p-2 bg-charcoal-blue border border-charcoal-blue/15 rounded-sm">Studying at Informatics Engineering</span>
-                            <span className="select-none xxs:text-[0.65rem] sm:text-[0.85rem] lg:text-[0.9rem] font-jetbrains-mono font-bold underline underline-offset-4">2024 - Present</span>
+                    <div className="h-[88%] w-[90%] lg:flex-col-start-top">
+                        <div className="relative xxs:h-24 lg:h-20 w-full flex-col-center xxs:gap-2 lg:gap-2.5">
+                            <span className="select-none xxs:text-[0.60rem] sm:text-[0.9rem] lg:text-[0.8rem] font-jetbrains-mono font-extrabold text-silver-haze xxs:p-1.5 md:p-2 bg-charcoal-blue rounded-sm">Studying at Informatics Engineering</span>
+                            <span className="absolute xxs:h-3.5 s-large:h-5 lg:h-6 w-1 bg-charcoal-blue"></span>
+                            <span className="select-none xxs:text-[0.65rem] sm:text-[0.75rem] font-jetbrains-mono text-silver-haze font-bold bg-charcoal-blue p-1 rounded-sm">2024 - Present</span>
                         </div>
                     </div>
                 </div>
                 <div className="xxs:h-[37rem] sm:h-[34rem] lg:h-full xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] md:w-[33rem] lg:w-[35rem] flex-col-center xxs:gap-2 lg:gap-3">
                     <div className="flex-row-center xxs:mb-2.5 lg:mb-0">
-                        <h3 className="hoverable w-44 py-1.5 text-center select-none xxs:text-[1.5rem] sm:text-[1.6rem] font-jetbrains-mono font-extrabold text-silver-haze border border-charcoal-blue/15 rounded-sm bg-charcoal-blue backdrop-blur-sm">
-                            Tech Stack
+                        <h3 className="big-hoverable px-2 py-1.5 text-center select-none xxs:text-[1.3rem] sm:text-[1.4rem] font-jetbrains-mono font-extrabold text-silver-haze border border-charcoal-blue/15 rounded-sm bg-charcoal-blue backdrop-blur-sm">
+                            { locale === "en" ? localization.en.text_heading_title_2 : localization.id.text_heading_title_2 }
                         </h3>
                     </div>
                     <div className="px-3 py-1.5 mb-2 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
                         <p className="font-jetbrains-mono text-justify select-none text-sm font-semibold">
-                            Currently, I am focusing on deepening my knowledge of programming languages, frameworks, and various tools that support me in becoming a fullstack developer.
+                            { locale === "en" ? localization.en.description_1 : localization.id.description_1 }
                         </p>
                     </div>
                     <div className="px-3 py-1.5 mb-2 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
                         <p className="font-jetbrains-mono text-justify select-none text-sm font-semibold">
-                            The languages ​​and frameworks that I currently master and understand for development.
+                            { locale === "en" ? localization.en.description_2 : localization.id.description_2 }
                         </p>
                     </div>
                     <div className="w-full flex flex-wrap justify-center items-center gap-3">
@@ -149,7 +161,7 @@ export default function Experience(): JSX.Element {
                     </div>
                     <div className="px-3 py-1.5 mb-2 border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
                         <p className="font-jetbrains-mono text-justify select-none text-sm font-semibold">
-                            Some tools that I often use in development.
+                            { locale === "en" ? localization.en.description_3 : localization.id.description_3 }
                         </p>
                     </div>
                     <div className="w-full flex flex-wrap justify-center items-center gap-3">

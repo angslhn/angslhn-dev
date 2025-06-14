@@ -10,7 +10,8 @@ export default function Cursor() {
   useEffect(() => {
     const bigBall = bigBallRef.current
     const smallBall = smallBallRef.current
-    const hoverables = document.querySelectorAll<HTMLElement>(".hoverable")
+    const bigHoverables = document.querySelectorAll<HTMLElement>(".big-hoverable")
+    const smallHoverables = document.querySelectorAll<HTMLElement>(".small-hoverable")
 
     if (!bigBall || !smallBall) return
     
@@ -30,7 +31,11 @@ export default function Cursor() {
       })
     }
 
-    const onMouseEnter = () => {
+    const onSmallMouseEnter = () => {
+      gsap.to(bigBall, { duration: 0.3, scale: 0.75 })
+    }
+
+    const onBigMouseEnter = () => {
       gsap.to(bigBall, { duration: 0.3, scale: 2 })
     }
 
@@ -40,15 +45,26 @@ export default function Cursor() {
 
     window.addEventListener("mousemove", onMouseMove)
     
-    hoverables.forEach(el => {
-      el.addEventListener("mouseenter", onMouseEnter)
+    smallHoverables.forEach(el => {
+      el.addEventListener("mouseenter", onSmallMouseEnter)
+      el.addEventListener("mouseleave", onMouseLeave)
+    })
+
+    bigHoverables.forEach(el => {
+      el.addEventListener("mouseenter", onBigMouseEnter)
       el.addEventListener("mouseleave", onMouseLeave)
     })
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove)
-      hoverables.forEach(el => {
-        el.removeEventListener("mouseenter", onMouseEnter)
+
+      smallHoverables.forEach(el => {
+        el.removeEventListener("mouseenter", onSmallMouseEnter)
+        el.removeEventListener("mouseleave", onMouseLeave)
+      })
+
+      bigHoverables.forEach(el => {
+        el.removeEventListener("mouseenter", onBigMouseEnter)
         el.removeEventListener("mouseleave", onMouseLeave)
       })
     }

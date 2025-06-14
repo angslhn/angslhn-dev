@@ -11,14 +11,22 @@ import About from "@/layouts/about"
 import Experience from "@/layouts/experience"
 import Project from "@/layouts/project"
 import Contact from "@/layouts/contact"
+import { MainContent } from "@/libs/types"
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function Main(): JSX.Element {
+interface MainProps {
+    localization: {
+        en: MainContent
+        id: MainContent
+    }
+}
+
+export default function Main({ localization }: MainProps): JSX.Element {
     useGSAP(() => {
         const lenis = new Lenis({
             smoothWheel: true,
-            duration: 1.75,
+            duration: 2,
         })
     
         function raf(time: number): void {
@@ -45,11 +53,11 @@ export default function Main(): JSX.Element {
 
     return (
         <main>
-            <Home/>
-            <About/>
-            <Experience/>
-            <Project/>
-            <Contact/>
+            <Home localization={{ en: localization.en.home, id: localization.id.home }} />
+            <About localization={{ en: localization.en.about, id: localization.id.about }} />
+            <Experience localization={{ en: localization.en.experience, id: localization.id.experience }} />
+            <Project localization={{ en: localization.en.project, id: localization.id.project }} />
+            <Contact localization={{ en: localization.en.contact, id: localization.id.contact }} />
         </main>
     )
 }
