@@ -2,7 +2,7 @@
 
 import { JSX } from "react"
 import { useApp } from "@/hooks/useApp"
-import yearnow from "@/utils/yearnow"
+import yearnow from "@/helpers/yearnow"
 
 import { FooterContent } from "@/libs/types"
 

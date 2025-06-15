@@ -1,5 +1,5 @@
 import { JSX, ReactNode } from "react"
-import Navigate from "@/utils/navigate"
+import Navigate from "@/helpers/navigate"
 
 type ButtonProps = {
     children: ReactNode

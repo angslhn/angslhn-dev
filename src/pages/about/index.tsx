@@ -1,11 +1,12 @@
 "use client"
 
+import Link from "next/link"
+import Image from "next/image"
 import { JSX, useEffect, useState } from "react"
 import { useApp } from "@/hooks/useApp"
-import Image from "next/image"
-import Link from "next/link"
-import Section from "@/wrappers/section"
+import Section from "@/wrappers/Section"
 import angslhn from "@/assets/images/angslhn.jpg"
+import Age from "@/helpers/age"
 
 import { Resolution } from "@/libs/types"
 
@@ -94,7 +95,7 @@ export default function About({ localization }: AboutProps): JSX.Element {
                         { locale === "en" ? localization.en.text_heading_title_1 : localization.id.text_heading_title_1 }
                     </h2>
                     <p className="py-1.5 px-3 text-justify font-jetbrains-mono select-none text-sm font-semibold border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
-                        { locale === "en" ? localization.en.description_1 : localization.id.description_1 }
+                        { String(locale === "en" ? localization.en.description_1 : localization.id.description_1).replace("<Age>", Age()) }
                     </p>
                     <p className="py-1.5 px-3 text-justify font-jetbrains-mono select-none text-sm font-semibold border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
                         { locale === "en" ? localization.en.description_2 : localization.id.description_2 }

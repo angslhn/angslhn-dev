@@ -3,7 +3,7 @@
 import { JSX, useEffect, useState } from "react"
 import { useApp } from "@/hooks/useApp"
 import Link from "next/link"
-import Section from "@/wrappers/section"
+import Section from "@/wrappers/Section"
 
 import { Resolution } from "@/libs/types"
 
@@ -81,7 +81,7 @@ export default function Contact({ localization }: ContactProps): JSX.Element {
                         { locale === "en" ? localization.en.description_3 : localization.id.description_3 }
                     </p>
                 </div>
-                <div className="py-2 w-full border-t border-charcoal-blue/15 flex-row-center flex-wrap xxs:gap-3 sm:gap-2">
+                <div className="py-2 w-full border-t border-charcoal-blue/15 flex-row-center flex-wrap xxs:gap-3 sm:gap-2 lg:gap-6">
                     <div className="h-14 w-14 flex-row-center rounded-sm border border-charcoal-blue/15">
                         <Link draggable="false" href="https://github.com/angslhn" target="_blank">
                             <svg className="big-hoverable text-charcoal-blue w-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

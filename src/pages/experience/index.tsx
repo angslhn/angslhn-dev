@@ -2,9 +2,11 @@
 
 import { JSX, useEffect, useState } from "react"
 import { useApp } from "@/hooks/useApp"
-import Section from "@/wrappers/section"
+import Section from "@/wrappers/Section"
 
 import { Resolution } from "@/libs/types"
+
+// Localization Page
 
 interface ExperienceProps {
     localization: {
@@ -21,10 +23,47 @@ interface ExperienceLocalization {
     description_3: string
 }
 
+// Fetch Response
+
+interface Experience {
+    experience: ExperienceLocale[]
+}
+
+interface ExperienceLocale {
+    en: ExperienceContent
+    id: ExperienceContent
+}
+
+interface ExperienceContent {
+    title: string
+    time: string
+}
+
 export default function Experience({ localization }: ExperienceProps): JSX.Element {
+    const [dataExperience, setDataExperience] = useState<ExperienceLocale[]>()
     const [resolution, setResolution] = useState<Resolution>({ height: 0, width: 0 })
 
     const { locale } = useApp()
+
+    useEffect(() => {
+        async function fetchDataExperience() {
+            try {
+                const response = await fetch("http://localhost:5000/experience")
+                
+                if (!response.ok) {
+                    throw new Error("Failed to fetch experience data.")
+                }
+
+                const data: Experience = await response.json()
+                
+                setDataExperience(data.experience)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchDataExperience()
+    }, [])
 
     useEffect(() => {
         const handleResize = () => setResolution({ height: window.innerHeight, width: window.innerWidth })
@@ -54,18 +93,26 @@ export default function Experience({ localization }: ExperienceProps): JSX.Eleme
     return (
         <Section name="experience">
             <div className="xxs:h-[62rem] lg:h-[30rem] xxs:w-full lg:w-[55rem] xxs:flex-col-center lg:flex-row-center xxs:gap-1.5 lg:gap-3">
-                <div className="xxs:h-[25rem] sm:h-[32rem] lg:h-full xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] md:w-[33rem] lg:w-[22rem] xxs:flex-col-center lg:flex-col-between border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
+                <div className="xxs:h-[25rem] sm:h-[32rem] lg:h-full xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] md:w-[33rem] lg:w-[22rem] flex-col-between">
                     <div className="h-[12%] w-full flex-row-center">
-                        <h3 className="big-hoverable font-jetbrains-mono select-none xxs:text-[1.3rem] sm:text-[1.4rem] underline underline-offset-4 font-extrabold text-center text-charcoal-blue">
+                        <h3 className="big-hoverable font-jetbrains-mono text-silver-haze font-extrabold select-none xxs:text-[1.15rem] sm:text-[1.25rem] px-3 py-1.5 bg-charcoal-blue rounded-sm">
                             { locale === "en" ? localization.en.text_heading_title_1 : localization.id.text_heading_title_1 }
                         </h3>
                     </div>
-                    <div className="h-[88%] w-[90%] lg:flex-col-start-top">
-                        <div className="relative xxs:h-24 lg:h-20 w-full flex-col-center xxs:gap-2 lg:gap-2.5">
-                            <span className="select-none xxs:text-[0.60rem] sm:text-[0.9rem] lg:text-[0.8rem] font-jetbrains-mono font-extrabold text-silver-haze xxs:p-1.5 md:p-2 bg-charcoal-blue rounded-sm">Studying at Informatics Engineering</span>
-                            <span className="absolute xxs:h-3.5 s-large:h-5 lg:h-6 w-1 bg-charcoal-blue"></span>
-                            <span className="select-none xxs:text-[0.65rem] sm:text-[0.75rem] font-jetbrains-mono text-silver-haze font-bold bg-charcoal-blue p-1 rounded-sm">2024 - Present</span>
-                        </div>
+                    <div className="h-[86.5%] w-full lg:flex-col-start-top overflow-y-hidden border border-charcoal-blue/15 rounded-sm bg-silver-haze/15 backdrop-blur-sm">
+                        {
+                            dataExperience?.map((experience, index): JSX.Element => (
+                                <div key={index} className="relative xxs:h-24 lg:h-20 w-full flex-col-center xxs:gap-2 lg:gap-2.5">
+                                    <span className="select-none xxs:text-[0.60rem] sm:text-[0.9rem] lg:text-[0.8rem] font-jetbrains-mono font-extrabold text-silver-haze xxs:p-1.5 md:p-2 bg-charcoal-blue rounded-sm">
+                                        { locale === "en" ? experience.en.title : experience.id.title }
+                                    </span>
+                                    <span className="absolute xxs:h-3.5 s-large:h-5 lg:h-6 w-1 bg-charcoal-blue"></span>
+                                    <span className="select-none xxs:text-[0.65rem] sm:text-[0.75rem] font-jetbrains-mono text-silver-haze font-bold bg-charcoal-blue p-1 rounded-sm">
+                                        { locale === "en" ? experience.en.time : experience.id.time }
+                                    </span>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
                 <div className="xxs:h-[37rem] sm:h-[34rem] lg:h-full xxs:w-[19.5rem] xs:w-[21rem] s:-w-[22.5rem] s-plus:w-[24rem] s-medium:w-[25.5rem] sm:w-[29.5rem] md:w-[33rem] lg:w-[35rem] flex-col-center xxs:gap-2 lg:gap-3">

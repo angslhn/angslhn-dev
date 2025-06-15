@@ -40,7 +40,7 @@ export default function SocialMedia() {
         
         const target = document.querySelector(".contact")
 
-        observer.observe(target as Element)
+        observer.observe(target as HTMLElement)
 
         return () => observer.disconnect()
     }, [resolution])

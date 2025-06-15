@@ -3,7 +3,7 @@
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { JSX, useRef } from "react"
-import Navigate from "@/utils/navigate"
+import Navigate from "@/helpers/navigate"
 import { useApp } from "@/hooks/useApp"
 
 interface MenuProps { 

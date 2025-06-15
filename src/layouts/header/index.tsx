@@ -5,7 +5,7 @@ import { useApp } from "@/hooks/useApp"
 import Menu from "@/fragments/sidebars/menu"
 
 import type { HeaderContent } from "@/libs/types"
-import Navigate from "@/utils/navigate"
+import Navigate from "@/helpers/navigate"
 
 interface HeaderProps {
     localization: {

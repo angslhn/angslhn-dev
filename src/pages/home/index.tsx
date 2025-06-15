@@ -1,6 +1,6 @@
 import { JSX, useEffect, useState } from 'react'
 import { useApp } from '@/hooks/useApp'
-import Section from '@/wrappers/section'
+import Section from '@/wrappers/Section'
 import AboutMe from '@/elements/button/aboutme'
 import HireMe from '@/elements/button/hireme'
 

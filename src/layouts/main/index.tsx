@@ -6,11 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
 import { JSX } from "react"
 
-import Home from "@/layouts/home"
-import About from "@/layouts/about"
-import Experience from "@/layouts/experience"
-import Project from "@/layouts/project"
-import Contact from "@/layouts/contact"
+import Home from "@/pages/home"
+import About from "@/pages/about"
+import Experience from "@/pages/experience"
+import Project from "@/pages/project"
+import Contact from "@/pages/contact"
 import { MainContent } from "@/libs/types"
 
 gsap.registerPlugin(ScrollTrigger)
