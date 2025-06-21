@@ -1,0 +1,1 @@
+export const API_URL: string | undefined = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_API_URL_PRODUCTION : process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
