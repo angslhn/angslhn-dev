@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Stalinist One";
+    src: url("../assets/fonts/StalinistOne.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../assets/fonts/JetBrainsMono.ttf") format("truetype");
+}
