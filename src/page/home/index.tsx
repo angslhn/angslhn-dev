@@ -44,9 +44,9 @@ export default function Home({ localization }: HomeProps): JSX.Element {
     useEffect(() => {
         const section = document.querySelector(".home") as HTMLElement
         
-        const { height } = resolution
+        const { height, width } = resolution
 
-        if (section) section.classList.replace(height < 601 ? "h-screen" : "h-[37.5625rem]", height < 601 ? "h-[37.5625rem]" : "h-screen")
+        if (section) section.classList.replace(width < 1024 || height < 601 ? "h-screen" : "h-[37.5625rem]", width < 1024 || height < 601 ? "h-[37.5625rem]" : "h-screen")
     }, [resolution])
 
     useEffect(() => {
