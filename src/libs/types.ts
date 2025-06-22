@@ -42,14 +42,14 @@ export interface OtherLocale {
 
 // Header Localization Types
 export interface HeaderContent {
-    menu: MenuContent
+    menu: NavigationContent
 }
 // Header Localization Types
 export interface HeaderContent {
-    menu: MenuContent
+    menu: NavigationContent
 }
 
-export interface MenuContent {
+export interface NavigationContent {
     nav_1: string
     nav_2: string
     nav_3: string

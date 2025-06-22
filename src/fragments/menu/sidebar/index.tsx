@@ -10,10 +10,10 @@ type Resolution = {
     width: number
 }
 
-export default function SocialMedia() {
+export default function Sidebar() {
     const [hide, setHide] = useState<boolean>(true)
     const [resolution, setResolution] = useState<Resolution>({ height: 0, width: 0 })
-    const socialMedia = useRef<HTMLDivElement | null>(null)
+    const Sidebar = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
         const handleResize = () => setResolution({ height: window.innerHeight, width: window.innerWidth })
@@ -49,7 +49,7 @@ export default function SocialMedia() {
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
-            gsap.to(socialMedia.current, {
+            gsap.to(Sidebar.current, {
                 duration: 1,
                 opacity: 1,
                 ease: "power3",
@@ -62,7 +62,7 @@ export default function SocialMedia() {
 
     return (
         <aside className="fixed flex-row-center top-0 left-0 h-screen w-16 z-20">
-            <div ref={ socialMedia } className={`social-media absolute opacity-0 left-0 py-1.5 w-14 flex-col-center gap-1.5 border border-charcoal-blue/15 bg-silver-haze/15 backdrop-blur-sm rounded-tr-sm rounded-br-sm ${ hide ? "-translate-x-16" : "translate-x-0" }`}>
+            <div ref={ Sidebar } className={`social-media absolute opacity-0 left-0 py-1.5 w-14 flex-col-center gap-1.5 border border-charcoal-blue/15 bg-silver-haze/15 backdrop-blur-sm rounded-tr-sm rounded-br-sm ${ hide ? "-translate-x-16" : "translate-x-0" }`}>
                 <div className="h-12 w-full flex justify-center items-center">
                     <Link href="https://github.com/angslhn" target="_blank" className="big-hoverable">
                         <svg className="w-[2.4rem] text-charcoal-blue" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

@@ -1,21 +1,13 @@
 "use client"
 
-import { JSX, ReactNode, useEffect, useState } from "react"
+import { JSX, ReactNode, useState } from "react"
 import { AppContext } from "@/contexts/AppContext"
-import getLocale from "@/helpers/locale"
+import { useLocale } from "@/hooks/useLocale"
 
 import type { Locale } from "@/libs/types"
 
 export default function AppProvider({ children }: { children: ReactNode }): JSX.Element {
-    const [locale, setLocale] = useState<Locale>(getLocale())
-
-    useEffect(() => {
-        document.documentElement.lang = locale
-
-        if(localStorage.getItem("locale")) {
-            localStorage.setItem("locale", locale)
-        }
-    }, [locale])
+    const [locale, setLocale] = useState<Locale>(useLocale() || "en")
 
     return (
         <AppContext.Provider value={{ locale, setLocale }}>

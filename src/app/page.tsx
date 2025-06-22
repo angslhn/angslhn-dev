@@ -5,7 +5,7 @@ import { API_URL } from "@/libs/api"
 import BGAnimation from "@/fragments/animation"
 import Cursor from "@/elements/cursor"
 import Header from "@/layouts/header"
-import SocialMedia from "@/fragments/sidebars/socialmedia"
+import Sidebar from "@/fragments/menu/sidebar"
 import Main from "@/layouts/main"
 import Footer from "@/layouts/footer"
 import Loading from "@/elements/loading"
@@ -49,7 +49,7 @@ export default async function Page(): Promise<JSX.Element> {
                 ) : (
                     <AppProvider>
                         <Header localization={ localization.header } />
-                        <SocialMedia/>
+                        <Sidebar/>
                         <Main localization={ localization.main }/>
                         <Footer localization={ localization.footer }/>
                     </AppProvider>

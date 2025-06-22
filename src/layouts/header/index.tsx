@@ -8,7 +8,7 @@ import { useSupported } from "@/hooks/useSupported"
 import { useMobile } from "@/hooks/useMobile"
 import Navigate from "@/helpers/navigate"
 
-import Menu from "@/fragments/sidebars/menu"
+import Navigation from "@/fragments/menu/navigation"
 
 import type { HeaderContent } from "@/libs/types"
 
@@ -20,26 +20,32 @@ interface HeaderProps {
 }
 
 export default function Header({ localization }: HeaderProps): JSX.Element {
-    const [showMenu, setShowMenu] = useState<boolean>(false)
+    const [navigation, setNavigation] = useState<boolean>(false)
 
+    const headerRef = useRef<HTMLElement | null>(null)
     const logoRef = useRef<HTMLDivElement | null>(null)
     const localizationRef = useRef<HTMLDivElement | null>(null)
-    const menuRef = useRef<HTMLDivElement | null>(null)
+    const navigationRef = useRef<HTMLDivElement | null>(null)
 
     const { locale, setLocale } = useApp()
     const supported = useSupported()
-    const isMobile = useMobile()
+    const isMobile = useMobile() 
 
-    const toggleMenu = (): void => {
-        setShowMenu(!showMenu)
-    }
+    const toggleNavigation = (): void => setNavigation(!navigation)
 
     useEffect(() => {
         document.documentElement.lang = locale
+        
+        if (localStorage.getItem("locale")) localStorage.setItem("locale", locale)
     }, [locale])
 
     useEffect(() => {
-        const triggerScroll = () => setShowMenu(false)
+        headerRef.current?.classList.replace(isMobile ? "fixed" : "static", isMobile ? "static" : "fixed")
+        navigationRef.current?.classList.replace(!isMobile ? "hidden" : "flex-row-center", !isMobile ? "flex-row-center" : "hidden")
+    }, [isMobile])
+
+    useEffect(() => {
+        const triggerScroll = () => setNavigation(false)
 
         window.addEventListener("scroll", triggerScroll)
 
@@ -72,11 +78,13 @@ export default function Header({ localization }: HeaderProps): JSX.Element {
                 ease: "power3"
             })
             
-            gsap.from(menuRef.current, {
-                x: 150,
-                opacity: 0,
-                ease: "power3"
-            })
+            if (!isMobile) {
+                gsap.from(navigationRef.current, {
+                    x: 150,
+                    opacity: 0,
+                    ease: "power3"
+                })
+            }
         })
 
         return () => ctx.revert()
@@ -85,7 +93,7 @@ export default function Header({ localization }: HeaderProps): JSX.Element {
     if (!supported) return <></>
 
     return (
-        <header className="fixed top-0 left-0 z-30 flex-row-between items-center w-full h-16">
+        <header ref={ headerRef } className="fixed top-0 left-0 z-30 flex-row-between items-center w-full h-16">
             <div className="h-full xxs:w-[12rem] xxs:pl-3 s-plus:pl-4 sm:pl-6 lg:pl-8 flex-row-start">
                 <div ref={ logoRef } role="button" onClick={() => Navigate("home")} className="big-hoverable hover:opacity-80 transition-opacity ease-in-out duration-200" draggable="false">
                     <svg className="xxs:w-12 lg:w-14 text-charcoal-blue" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
@@ -100,12 +108,17 @@ export default function Header({ localization }: HeaderProps): JSX.Element {
                     <span className="select-none text-charcoal-blue">|</span>
                     <span role="button" onClick={() => setLocale("id")} className="small-hoverable font-jetbrains-mono font-extrabold select-none text-charcoal-blue hover:text-charcoal-blue/80">ID</span>
                 </div>
-                <div ref={ menuRef } role="button" onClick={() => toggleMenu() } className="flex-row-center big-hoverable xxs:!cursor-pointer sm:!cursor-none">
-                    <svg className="h-16 text-gray-1024" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path className="fill-current" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" d="M5 7h14M5 12h14M5 17h14"/>
-                    </svg>
-                </div>
-                <Menu localization={{ en: localization.en.menu, id: localization.id.menu }} show={ showMenu }/>
+                {
+                    !isMobile &&
+                        <>
+                            <div ref={ navigationRef } role="button" onClick={() => toggleNavigation() } className="hidden big-hoverable xxs:!cursor-pointer sm:!cursor-none">
+                                <svg className="h-16 text-gray-1024" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <path className="fill-current" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" d="M5 7h14M5 12h14M5 17h14"/>
+                                </svg>
+                            </div>
+                            <Navigation localization={{ en: localization.en.menu, id: localization.id.menu }} navigation={ navigation }/>
+                        </>
+                }
             </div>
         </header>
     )

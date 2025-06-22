@@ -6,15 +6,15 @@ import { JSX, useRef } from "react"
 import { useApp } from "@/hooks/useApp"
 import Navigate from "@/helpers/navigate"
 
-interface MenuProps { 
+interface NavigationProps { 
     localization: { 
-        en: MenuLocalization
-        id: MenuLocalization
+        en: NavigationLocalization
+        id: NavigationLocalization
     }
-    show: boolean,
+    navigation: boolean,
 }
 
-interface MenuLocalization {
+interface NavigationLocalization {
     nav_1: string;
     nav_2: string;
     nav_3: string;
@@ -22,25 +22,25 @@ interface MenuLocalization {
     nav_5: string;
 }
 
-export default function Menu({ localization, show }: MenuProps): JSX.Element {
-    const menu = useRef<HTMLElement | null>(null)
+export default function Navigation({ localization, navigation }: NavigationProps): JSX.Element {
+    const navigationRef = useRef<HTMLElement | null>(null)
 
     const { locale } = useApp()
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
-            gsap.to(menu.current, {
+            gsap.to(navigationRef.current, {
                 duration: 1,
                 ease: "power3.out",
-                x: show ? -12 : 250,
+                x: navigation ? -12 : 250,
             })
         })
 
         return () => ctx.revert()
-    }, { dependencies: [show] })
+    }, { dependencies: [navigation] })
 
     return (
-        <nav ref={ menu } className="absolute w-[13rem] h-[15rem] top-[5rem] translate-x-[15.625rem] border border-charcoal-blue/15 rounded-sm bg-[#dce2e2]/50 backdrop-blur-lg z-30">
+        <nav ref={ navigationRef } className="absolute w-[13rem] h-[15rem] top-[5rem] translate-x-[15.625rem] border border-charcoal-blue/15 rounded-sm bg-[#dce2e2]/70 backdrop-blur-lg z-30">
             <ul className="flex-col-between text-charcoal-blue">
                 <li className="flex relative items-center h-[3rem] w-full">
                     <svg className="ml-4 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
