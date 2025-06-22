@@ -10,6 +10,8 @@ export type App = {
     setLocale: (locale: "en" | "id") => void
 }
 
+export type Locale = "en" | "id"
+
 // Localization Types
 export interface Localization {
     header: HeaderLocale

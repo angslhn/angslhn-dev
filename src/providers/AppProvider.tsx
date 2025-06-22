@@ -2,17 +2,20 @@
 
 import { JSX, ReactNode, useEffect, useState } from "react"
 import { AppContext } from "@/contexts/AppContext"
+import getLocale from "@/helpers/locale"
+
+import type { Locale } from "@/libs/types"
 
 export default function AppProvider({ children }: { children: ReactNode }): JSX.Element {
-    const [locale, setLocale] = useState<"en" | "id">("en")
+    const [locale, setLocale] = useState<Locale>(getLocale())
 
     useEffect(() => {
-        const localeNow: "en" | "id" = String(window.navigator.language).toLowerCase().split("-")[0] === "id" ? "id" : "en"
+        document.documentElement.lang = locale
 
-        document.documentElement.lang = localeNow
-
-        setLocale(localeNow)
-    }, [])
+        if(localStorage.getItem("locale")) {
+            localStorage.setItem("locale", locale)
+        }
+    }, [locale])
 
     return (
         <AppContext.Provider value={{ locale, setLocale }}>

@@ -24,7 +24,6 @@ export default function Home({ localization }: HomeProps): JSX.Element {
     const [resolution, setResolution] = useState<Resolution>({ height: 0, width: 0 })
 
     const wrapperRef = useRef<HTMLDivElement | null>(null)
-    const dotsRef = useRef<HTMLSpanElement | null>(null)
     const textsRef = useRef<(HTMLElement | null)[]>([])
     const buttonsRef = useRef<(HTMLButtonElement | HTMLAnchorElement | null)[]>([])
 
@@ -90,18 +89,6 @@ export default function Home({ localization }: HomeProps): JSX.Element {
                 })
             })
 
-            const dots = SplitText.create(dotsRef.current, { type: "chars" })
-
-            gsap.from(dots.chars, {
-                duration: 1,
-                ease: "power3",    
-                autoAlpha: 0,
-                stagger: 0.1,
-                delay: 2,
-                yoyo: true,
-                repeat: -1
-            })
-
             buttonsRef.current.forEach((element, index) => {                
                 gsap.from(element, {
                     opacity: 0,
@@ -125,10 +112,7 @@ export default function Home({ localization }: HomeProps): JSX.Element {
                             { localization[locale].text_2 }
                         </h1>
                         <h2 ref={ (text) => { textsRef.current[0] = text }} className="order-1 mb-1 font-jetbrains-mono text-charcoal-blue tracking-wide font-extrabold select-none xxs:text-[1.25rem] xs:text-[1.34rem] sm:text-[1.4rem] md:text-[1.5rem] lg:text-[1.875rem]">
-                            { String(localization[locale].text_1).slice(0, String(localization[locale].text_1).indexOf(".")) }
-                            <span ref={ dotsRef }>
-                                { String(localization[locale].text_1).slice(String(localization[locale].text_1).indexOf(".")) }
-                            </span>
+                            { localization[locale].text_1 }
                         </h2>
                         <h2 ref={ (text) => { textsRef.current[2] = text }} className="order-3 font-jetbrains-mono text-charcoal-blue tracking-wide font-extrabold select-none xxs:text-[1.18rem] xs:text-[1.23rem] sm:text-[1.43rem] md:text-[1.52rem] lg:text-[1.9rem]">
                             { localization[locale].text_3 }
