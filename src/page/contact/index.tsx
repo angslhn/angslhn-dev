@@ -2,7 +2,7 @@ import gsap from "gsap"
 import Link from "next/link"
 import { JSX, useEffect, useRef, useState } from "react"
 import { useApp } from "@/hooks/useApp"
-import { isMobile } from "react-device-detect"
+import { useMobile } from "@/hooks/useMobile"
 
 import Section from "@/containers/Section"
 
@@ -23,6 +23,7 @@ export default function Contact({ localization }: ContactProps): JSX.Element {
     const contactRef = useRef<HTMLDivElement | null>(null)
 
     const { locale } = useApp()
+    const isMobile = useMobile()
 
     useEffect(() => {
         const handleResize = () => setResolution({ height: window.innerHeight, width: window.innerWidth })
@@ -45,24 +46,28 @@ export default function Contact({ localization }: ContactProps): JSX.Element {
     useEffect(() => {
         if (isMobile) return
 
-        gsap.fromTo(contactRef.current, {
-            y: 150,
-            opacity: 0,
-            scale: 0.9
-        }, {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "power3",
-            scrollTrigger: {
-                trigger: wrapperRef.current,
-                start: "top 15%",
-                end: "bottom 15%",
-                toggleActions: "play reverse play reverse"
-            }
-        })        
-    }, [resolution])
+        const ctx = gsap.context(() => {
+            gsap.fromTo(contactRef.current, {
+                y: 150,
+                opacity: 0,
+                scale: 0.9
+            }, {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "power3",
+                scrollTrigger: {
+                    trigger: wrapperRef.current,
+                    start: "top 15%",
+                    end: "bottom 15%",
+                    toggleActions: "play reverse play reverse"
+                }
+            })
+        })
+
+        return () => ctx.revert()
+    }, [isMobile, resolution])
 
     return (
         <Section name="contact">

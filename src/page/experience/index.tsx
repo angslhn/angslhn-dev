@@ -3,7 +3,7 @@ import { SplitText } from "gsap/all"
 import { JSX, useEffect, useRef, useState } from "react"
 import { useApp } from "@/hooks/useApp"
 import { API_URL } from "@/libs/api"
-import { isMobile } from "react-device-detect"
+import { useMobile } from "@/hooks/useMobile"
 
 import Section from "@/containers/Section"
 
@@ -43,6 +43,7 @@ export default function Experience({ localization }: ExperienceProps): JSX.Eleme
     const techStackRef = useRef<(HTMLDivElement | null)[]>([])
 
     const { locale } = useApp()
+    const isMobile = useMobile()
 
     gsap.registerPlugin(SplitText)
 
@@ -136,7 +137,7 @@ export default function Experience({ localization }: ExperienceProps): JSX.Eleme
         })
 
         return () => ctx.revert()
-    }, [resolution])
+    }, [isMobile, resolution])
 
     return (
         <Section name="experience">

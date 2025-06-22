@@ -2,7 +2,7 @@ import gsap from "gsap"
 import { JSX, useState, useEffect, useRef } from "react"
 import { useApp } from "@/hooks/useApp"
 import { API_URL } from "@/libs/api"
-import { isMobile } from "react-device-detect"
+import { useMobile } from "@/hooks/useMobile"
 
 import Section from "@/containers/Section"
 
@@ -48,6 +48,7 @@ export default function Project({ localization }: ProjectProps): JSX.Element {
     const projectsRef = useRef<HTMLDivElement | null>(null) 
 
     const { locale } = useApp()
+    const isMobile = useMobile()
 
     useEffect(() => {
         async function getProjectData(): Promise<void> {
@@ -154,7 +155,7 @@ export default function Project({ localization }: ProjectProps): JSX.Element {
         })
 
         return () => ctx.revert()
-    }, [resolution])
+    }, [isMobile, resolution])
 
     return (
         <Section name="project">

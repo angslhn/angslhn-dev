@@ -2,7 +2,7 @@ import gsap from "gsap"
 import { SplitText } from "gsap/all"
 import { JSX, useEffect, useRef, useState } from "react"
 import { useApp } from "@/hooks/useApp"
-import { isMobile } from "react-device-detect"
+import { useMobile } from "@/hooks/useMobile"
 
 import Section from "@/containers/Section"
 import AboutMe from "@/elements/button/aboutme"
@@ -29,6 +29,7 @@ export default function Home({ localization }: HomeProps): JSX.Element {
     const buttonsRef = useRef<(HTMLButtonElement | HTMLAnchorElement | null)[]>([])
 
     const { locale } = useApp()
+    const isMobile = useMobile()
 
     useEffect(() => {
         const handleResize = () => setResolution({ height: window.innerHeight, width: window.innerWidth })
@@ -113,7 +114,7 @@ export default function Home({ localization }: HomeProps): JSX.Element {
         })
 
         return () => ctx.revert()
-    }, [resolution])
+    }, [isMobile, resolution])
 
     return (
         <Section name="home">

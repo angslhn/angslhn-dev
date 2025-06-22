@@ -4,7 +4,7 @@ import Image from "next/image"
 import { JSX, useEffect, useRef, useState } from "react"
 import { SplitText } from "gsap/all"
 import { useApp } from "@/hooks/useApp"
-import { isMobile } from "react-device-detect"
+import { useMobile } from "@/hooks/useMobile"
 
 import Section from "@/containers/Section"
 import source from "@/assets/images/angslhn.webp"
@@ -30,6 +30,7 @@ export default function About({ localization }: AboutProps): JSX.Element {
     const aboutRef = useRef<(HTMLParagraphElement | null)[]>([])
 
     const { locale } = useApp()
+    const isMobile = useMobile()
 
     useEffect(() => {
         const handleResize = () => setResolution({ height: window.innerHeight, width: window.innerWidth })
@@ -97,7 +98,7 @@ export default function About({ localization }: AboutProps): JSX.Element {
         })
 
         return () => ctx.revert()
-    }, [resolution])
+    }, [isMobile, resolution])
 
     return (
         <Section name="about">

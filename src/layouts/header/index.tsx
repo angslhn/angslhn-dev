@@ -5,7 +5,7 @@ import { JSX, useEffect, useRef, useState } from "react"
 import { useGSAP } from "@gsap/react"
 import { useApp } from "@/hooks/useApp"
 import { useSupported } from "@/hooks/useSupported"
-import { isMobile } from "react-device-detect"
+import { useMobile } from "@/hooks/useMobile"
 import Navigate from "@/helpers/navigate"
 
 import Menu from "@/fragments/sidebars/menu"
@@ -28,6 +28,7 @@ export default function Header({ localization }: HeaderProps): JSX.Element {
 
     const { locale, setLocale } = useApp()
     const supported = useSupported()
+    const isMobile = useMobile()
 
     const toggleMenu = (): void => {
         setShowMenu(!showMenu)
@@ -48,33 +49,37 @@ export default function Header({ localization }: HeaderProps): JSX.Element {
     useEffect(() => {
         const header = document.querySelector("header")
 
-        if (header && (isMobile)) {
+        if (header && isMobile) {
             header?.classList.add("bg-header")
         } else {
             header?.classList.remove("bg-header")
         }
-    }, [])
+    }, [isMobile])
 
     useGSAP(() => {
-        gsap.from(logoRef.current, {
-            x: -150,
-            opacity: 0,
-            duration: 1,
-            ease: "power3"
+        const ctx = gsap.context(() => {
+            gsap.from(logoRef.current, {
+                x: -150,
+                opacity: 0,
+                duration: 1,
+                ease: "power3"
+            })
+            
+            gsap.from(localizationRef.current, {
+                y: -150,
+                opacity: 0,
+                duration: 1,
+                ease: "power3"
+            })
+            
+            gsap.from(menuRef.current, {
+                x: 150,
+                opacity: 0,
+                ease: "power3"
+            })
         })
 
-        gsap.from(localizationRef.current, {
-            y: -150,
-            opacity: 0,
-            duration: 1,
-            ease: "power3"
-        })
-
-        gsap.from(menuRef.current, {
-            x: 150,
-            opacity: 0,
-            ease: "power3"
-        })
+        return () => ctx.revert()
     }, { dependencies: [] })
 
     if (!supported) return <></>
