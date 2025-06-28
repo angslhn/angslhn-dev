@@ -123,7 +123,7 @@ export default function Home({ localization }: HomeProps): JSX.Element {
                     </div>
                     <div className="py-2 flex items-start justify-center gap-3">
                         <AboutMe ref={ (button) => { buttonsRef.current[0] = button }}>
-                            <span className="text-silver-haze font-jetbrains-mono xxs:text-[0.75rem] xs:text-sm md:text-[1rem] font-extrabold">
+                            <span className="text-silver-haze font-jetbrains-mono select-none xxs:text-[0.75rem] xs:text-sm md:text-[1rem] font-extrabold">
                                 { localization[locale].button_1 }
                             </span>
                             <svg className="text-silver-haze w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -131,7 +131,7 @@ export default function Home({ localization }: HomeProps): JSX.Element {
                             </svg>
                         </AboutMe>
                         <HireMe ref={ (button) => { buttonsRef.current[1] = button }}>
-                            <span className="text-silver-haze font-jetbrains-mono xxs:text-[0.75rem] xs:text-sm md:text-[1rem] font-extrabold">
+                            <span className="text-silver-haze font-jetbrains-mono select-none xxs:text-[0.75rem] xs:text-sm md:text-[1rem] font-extrabold">
                                 { localization[locale].button_2 }
                             </span>
                             <svg className="text-silver-haze w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">

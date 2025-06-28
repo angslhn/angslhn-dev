@@ -1,3 +1,5 @@
+"use server"
+
 import { JSX } from "react"
 import AppProvider from "@/providers/AppProvider"
 import { API_URL } from "@/libs/api"
